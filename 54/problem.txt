@@ -1,45 +1,77 @@
 ==================================================================
-洛谷 P2895  ·  [USACO08FEB] Meteor Shower S
+洛谷 P4779  ·  【模板】单源最短路径（标准版）
 ==================================================================
 
 难度      : 普及/提高-
-考点      : 多源 BFS
-计划      : Day 54  (阶段三 · 栈队列与搜索)
-题目链接  : https://www.luogu.com.cn/problem/P2895
+考点      : Dijkstra + 堆
+计划      : Day 54  (阶段四 · 图论)
+题目链接  : https://www.luogu.com.cn/problem/P4779
 本地目录  : ~/projects/algorithm_exercise/54
-限制      : 1000 ms / 125 MB
+限制      : 1000 ms / 512 MB
+------------------------------------------------------------------
+【题目背景】
+
+2018 年 7 月 19 日，某位同学在 [NOI Day 1 T1 归程](https://www.luogu.com.cn/problem/P4768) 一题里非常熟练地使用了一个广为人知的算法求最短路。
+
+然后呢？
+
+100 → 60；
+
+Ag → Cu；
+
+最终，他因此没能与理想的大学达成契约。
+
+小 F 衷心祝愿大家不再重蹈覆辙。
 
 ------------------------------------------------------------------
 【题目描述】
 
-Bessie hears that an extraordinary meteor shower is coming; reports say that these meteors will crash into earth and destroy anything they hit. Anxious for her safety, she vows to find her way to a safe location (one that is never destroyed by a meteor) . She is currently grazing at the origin in the coordinate plane and wants to move to a new, safer location while avoiding being destroyed by meteors along her way.
+给定一个 n 个点，m 条有向边的带非负权图，请你计算从 s 出发，到每个点的距离。
 
-The reports say that M meteors (1 ≤ M ≤ 50,000) will strike, with meteor i will striking point (Xi, Yi) (0 ≤ Xi ≤ 300; 0 ≤ Yi ≤ 300) at time Ti (0 ≤ Ti  ≤ 1,000). Each meteor destroys the point that it strikes and also the four rectilinearly adjacent lattice points.
-
-Bessie leaves the origin at time 0 and can travel in the first quadrant and parallel to the axes at the rate of one distance unit per second to any of the (often 4) adjacent rectilinear points that are not yet destroyed by a meteor. She cannot be located on a point at any time greater than or equal to the time it is destroyed).
-
-Determine the minimum time it takes Bessie to get to a safe place.
+数据保证你能从 s 出发到任意点。
 
 ------------------------------------------------------------------
 【输入格式】
 
-\* Line 1: A single integer: M
-
-\* Lines 2..M+1: Line i+1 contains three space-separated integers: Xi, Yi, and Ti
+第一行为三个正整数 n, m, s。
+第二行起 m 行，每行三个非负整数 u_i, v_i, w_i，表示从 u_i 到 v_i 有一条权值为 w_i 的有向边。
 
 ------------------------------------------------------------------
 【输出格式】
 
-\* Line 1: The minimum time it takes Bessie to get to a safe place or -1 if it is impossible.
+输出一行 n 个空格分隔的非负整数，表示 s 到每个点的距离。
 
 ------------------------------------------------------------------
 【输入输出样例】
 
 --- 样例 #1 输入 ---
-4
-0 0 2
-2 1 2
-1 1 2
-0 3 5
+4 6 1
+1 2 2
+2 3 2
+2 4 1
+1 3 5
+3 4 3
+1 4 4
 --- 样例 #1 输出 ---
-5
+0 2 4 3
+
+------------------------------------------------------------------
+【说明/提示】
+
+样例解释请参考 [数据随机的模板题](https://www.luogu.com.cn/problem/P3371)。
+
+1 ≤ n ≤ 10^5；
+
+1 ≤ m ≤ 2× 10^5；
+
+s = 1；
+
+1 ≤ u_i, v_i≤ n；
+
+0 ≤ w_i ≤ 10 ^ 9,
+
+0 ≤ Σ w_i ≤ 10 ^ 9。
+
+本题数据可能会持续更新，但不会重测，望周知。
+
+2018.09.04 数据更新 from @zzq

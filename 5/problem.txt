@@ -1,68 +1,44 @@
 ==================================================================
-洛谷 P1328  ·  [NOIP 2014 提高组] 生活大爆炸版石头剪刀布
+洛谷 P3143  ·  [USACO16OPEN] Diamond Collector S
 ==================================================================
 
-难度      : 普及-
-考点      : 规则模拟
-计划      : Day 5  (阶段一 · 语言与基础)
-题目链接  : https://www.luogu.com.cn/problem/P1328
+难度      : 普及
+考点      : 双指针 + 排序
+计划      : Day 5  (阶段一 · 巩固与基础工具)
+题目链接  : https://www.luogu.com.cn/problem/P3143
 本地目录  : ~/projects/algorithm_exercise/5
-限制      : 1000 ms / 125 MB
-
-------------------------------------------------------------------
-【题目背景】
-
-NOIP2014 提高组 D1T1
-
+限制      : 1000 ms / 128 MB
 ------------------------------------------------------------------
 【题目描述】
 
-石头剪刀布是常见的猜拳游戏：石头胜剪刀，剪刀胜布，布胜石头。如果两个人出拳一样，则不分胜负。在《生活大爆炸》第二季第 8 集中出现了一种石头剪刀布的升级版游戏。
+Bessie the cow, always a fan of shiny objects, has taken up a hobby of mining diamonds in her spare time!  She has collected N diamonds (N ≤ 50,000) of varying sizes, and she wants to arrange some of them in a pair of  display cases in the barn.
 
-升级版游戏在传统的石头剪刀布游戏的基础上，增加了两个新手势：
 
-斯波克:《星际迷航》主角之一。
-
-蜥蜴人:《星际迷航》中的反面角色。
-
-这五种手势的胜负关系如表一所示,表中列出的是甲对乙的游戏结果。
-
-![](https://cdn.luogu.com.cn/upload/pic/1346.png)
-
-现在，小 A 和小 B 尝试玩这种升级版的猜拳游戏。已知他们的出拳都是有周期性规律的，但周期长度不一定相等。例如：如果小 A 以 `石头-布-石头-剪刀-蜥蜴人-斯波克` 长度为 $6$ 的周期出拳,那么他的出拳序列就是 `石头-布-石头-剪刀-蜥蜴人-斯波克-石头-布-石头-剪刀-蜥蜴人-斯波克-...`，而如果小 B 以 `剪刀-石头-布-斯波克-蜥蜴人` 长度为 $5$ 的周期出拳,那么他出拳的序列就是 `剪刀-石头-布-斯波克-蜥蜴人-剪刀-石头-布-斯波克-蜥蜴人-...`。
-
-已知小 A 和小 B 一共进行 $N$ 次猜拳。每一次赢的人得 $1$ 分，输的得 $0$ 分；平局两人都得 $0$ 分。现请你统计 $N$ 次猜拳结束之后两人的得分。
+Since Bessie wants the diamonds in each of the two cases to be relatively similar in  size, she decides that she will not include two diamonds in the same case if their sizes differ by more than K (two diamonds can be displayed together in the same case if their sizes differ by exactly K).  Given K, please help Bessie determine the maximum number of diamonds she can display in both cases together.
 
 ------------------------------------------------------------------
 【输入格式】
 
-第一行包含三个整数：$N,N_A,N_B$，分别表示共进行 $N$ 次猜拳、小 A 出拳的周期长度，小 B 出拳的周期长度。数与数之间以一个空格分隔。
+The first line of the input file contains N and K (0 ≤ K ≤ 1,000,000,000).
 
-第二行包含 $N_A$ 个整数,表示小 A 出拳的规律,第三行包含 $N_B$ 个整数，表示小 B 出拳的规律。其中，$0$ 表示 `剪刀`，$1$ 表示 `石头`，$2$ 表示 `布`，$3$ 表示 `蜥蜴人`，$4$ 表示 `斯波克`。数与数之间以一个空格分隔。
+The next N lines each contain an integer giving the size of one of the diamonds.  All sizes will be positive and will not exceed 1,000,000,000.
 
 ------------------------------------------------------------------
 【输出格式】
 
-输出一行，包含两个整数，以一个空格分隔，分别表示小 A、小 B 的得分。
+Output a single positive integer, telling the maximum number of diamonds that Bessie can showcase in total in both the cases.
 
 ------------------------------------------------------------------
 【输入输出样例】
 
 --- 样例 #1 输入 ---
-10 5 6
-0 1 2 3 4
-0 3 4 2 1 0
+7 3
+10
+5
+1
+12
+9
+5
+14
 --- 样例 #1 输出 ---
-6 2
-
---- 样例 #2 输入 ---
-9 5 5
-0 1 2 3 4
-1 0 3 2 4
---- 样例 #2 输出 ---
-4 4
-
-------------------------------------------------------------------
-【说明/提示】
-
-对于 $100\%$ 的数据，$0 < N \leq 200, 0 < N_A \leq 200, 0 < N_B \leq 200$ 。
+5

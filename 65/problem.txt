@@ -1,58 +1,61 @@
 ==================================================================
-洛谷 P2910  ·  [USACO08OPEN] Clear And Present Danger S
+洛谷 P3375  ·  【模板】KMP 字符串匹配
 ==================================================================
 
-难度      : 普及/提高-
-考点      : Floyd 全源最短路
-计划      : Day 65  (阶段四 · 图论)
-题目链接  : https://www.luogu.com.cn/problem/P2910
+难度      : 普及+
+考点      : KMP 模板
+计划      : Day 65  (阶段五 · 字符串与数据结构)
+题目链接  : https://www.luogu.com.cn/problem/P3375
 本地目录  : ~/projects/algorithm_exercise/65
-限制      : 1000 ms / 125 MB
-
+限制      : 1000 ms / 512 MB
 ------------------------------------------------------------------
 【题目描述】
 
-Farmer John is on a boat seeking fabled treasure on one of the $N (1 \le N \le 100)$ islands conveniently labeled $1 \sim N$ in the Cowribbean Sea.
+给出两个字符串 s_1 和 s_2，若 s_1 的区间 [l, r] 子串与 s_2 完全相同，则称 s_2 在 s_1 中出现了，其出现位置为 l。
+现在请你求出 s_2 在 s_1 中所有出现的位置。
 
-The treasure map tells him that he must travel through a certain sequence $A_1, A_2, \dots, A_M$ of $M (2 \le M \le 10^4)$ islands, starting on island $1$ and ending on island $N$ before the treasure will appear to him. He can visit these and other islands out of order and even more than once, but his trip must include the $A_i$ sequence in the order specified by the map.
-
-FJ wants to avoid pirates and knows the pirate-danger rating $(0 \le danger \le 10^5)$ between each pair of islands. The total danger rating of his mission is the sum of the danger ratings of all the paths he traverses.
-
-Help Farmer John find the least dangerous route to the treasure that satisfies the treasure map's requirement.
+定义一个字符串 s 的 border 为 s 的一个**非 s 本身**的子串 t，满足 t 既是 s 的前缀，又是 s 的后缀。
+对于 s_2，你还需要求出对于其每个前缀 s' 的最长 border t' 的长度。
 
 ------------------------------------------------------------------
 【输入格式】
 
-Line $1$: Two space-separated integers: $N$ and $M$.
-
-Lines $2 \sim M+1$: Line $i+1$ describes the $i$-th island FJ must visit with a single integer: $A_i$.
-
-Lines $M+2\sim N+M+1$: Line $i+M+1$ contains $N$ space-separated integers that are the respective danger rating of the path between island i and islands $1, 2, \dots$, and $N$, respectively. The ith integer is always zero.
+第一行为一个字符串，即为 s_1。
+第二行为一个字符串，即为 s_2。
 
 ------------------------------------------------------------------
 【输出格式】
 
-Line $1$: The minimum danger that Farmer John can encounter while obtaining the treasure.
+首先输出若干行，每行一个整数，**按从小到大的顺序**输出 s_2 在 s_1 中出现的位置。
+最后一行输出 |s_2| 个整数，第 i 个整数表示 s_2 的长度为 i 的前缀的最长 border 长度。
 
 ------------------------------------------------------------------
 【输入输出样例】
 
 --- 样例 #1 输入 ---
-3 4 
-1 
-2 
-1 
-3 
-0 5 1 
-5 0 2 
-1 2 0 
+ABABABC
+ABA
 --- 样例 #1 输出 ---
-7 
+1
+3
+0 0 1
 
 ------------------------------------------------------------------
 【说明/提示】
 
-There are $3$ islands and the treasure map requires Farmer John to visit a sequence of $4$ islands in order: island $1$, island $2$, island $1$ again, and finally island $3$. The danger ratings of the paths are given: the paths $(1, 2); (2, 3); (3, 1)$ and the reverse paths have danger ratings of $5, 2$, and $1$, respectively.
+### 样例 1 解释
 
+ ![](https://cdn.luogu.com.cn/upload/pic/2257.png)。
 
-He can get the treasure with a total danger of $7$ by traveling in the sequence of islands $1, 3, 2, 3, 1$, and $3$. The cow map's requirement ($1, 2, 1$, and $3$) is satisfied by this route. We avoid the path between islands $1$ and $2$ because it has a large danger rating.
+对于 s_2 长度为 3 的前缀 `ABA`，字符串 `A` 既是其后缀也是其前缀，且是最长的，因此最长 border 长度为 1。
+
+### 数据规模与约定
+
+**本题采用多测试点捆绑测试，共有 4 个子任务**。
+
+- Subtask 0（30 points）：|s_1| ≤ 15，|s_2| ≤ 5。
+- Subtask 1（40 points）：|s_1| ≤ 10^4，|s_2| ≤ 10^2。
+- Subtask 2（30 points）：无特殊约定。
+- Subtask 3（0 points）：Hack。
+
+对于全部的测试点，保证 1 ≤ |s_1|,|s_2| ≤ 10^6，s_1, s_2 中均只含大写英文字母。

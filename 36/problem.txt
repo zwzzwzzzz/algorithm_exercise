@@ -1,47 +1,54 @@
 ==================================================================
-洛谷 P3131  ·  [USACO16JAN] Subsequences Summing to Sevens S
+洛谷 P1049  ·  [NOIP2001 普及组] 装箱问题
 ==================================================================
 
 难度      : 普及-
-考点      : 前缀和 + 同余
-计划      : Day 36  (阶段二 · 数组技巧与二分)
-题目链接  : https://www.luogu.com.cn/problem/P3131
+考点      : 01 背包变体
+计划      : Day 36  (阶段三 · 动态规划)
+题目链接  : https://www.luogu.com.cn/problem/P1049
 本地目录  : ~/projects/algorithm_exercise/36
-限制      : 500 ms / 512 MB
-
+限制      : 1000 ms / 125 MB
 ------------------------------------------------------------------
 【题目描述】
 
-Farmer John's $N$ cows are standing in a row, as they have a tendency to do from time to time.  Each cow is labeled with a distinct integer ID number so FJ can tell them apart. FJ would like to take a photo of a contiguous group of cows but, due to a traumatic  childhood incident involving the numbers $1 \ldots 6$, he only wants to take a picture of a group of cows if their IDs add up to a multiple of 7.
+有一个箱子容量为 V，同时有 n 个物品，每个物品有一个体积。
 
-Please help FJ determine the size of the largest group he can photograph.
+现在从 n 个物品中，任取若干个装入箱内（也可以不取），使箱子的剩余空间最小。输出这个最小值。
 
 ------------------------------------------------------------------
 【输入格式】
 
-The first line of input contains $N$ ($1 \leq N \leq 50,000$).  The next $N$ lines each contain the $N$ integer IDs of the cows (all are in the range $0 \ldots 1,000,000$).
+第一行共一个整数 V，表示箱子容量。
+
+第二行共一个整数 n，表示物品总数。
+
+接下来 n 行，每行有一个正整数，表示第 i 个物品的体积。
 
 ------------------------------------------------------------------
 【输出格式】
 
-Please output the number of cows in the largest consecutive group whose IDs sum to a multiple of 7. If no such group exists, output 0.
+- 共一行一个整数，表示箱子最小剩余空间。
 
 ------------------------------------------------------------------
 【输入输出样例】
 
 --- 样例 #1 输入 ---
-7
-3
-5
-1
+24
 6
-2
-14
-10
+8
+3
+12
+7
+9
+7
 --- 样例 #1 输出 ---
-5
+0
 
 ------------------------------------------------------------------
 【说明/提示】
 
-In this example, $5+1+6+2+14 = 28$.
+对于 100% 数据，满足 0<n ≤ 30，1 ≤ V ≤ 20000。
+
+**【题目来源】**
+
+NOIP 2001 普及组第四题
